@@ -11,10 +11,12 @@ public class Urinals {
         for(int i=0;i<n;i++) {
             if(str.charAt(i) != '0' && str.charAt(i) !='1') {
                 flag=false;
+                break;
             }
             if(i!=n-1) {
                 if (str.charAt(i) == '1' && str.charAt(i+1) == '1') {
                     flag=false;
+                    break;
                 }
             }
         }
@@ -39,7 +41,7 @@ public class Urinals {
         return cnt;
     }
     private static void openAndprocessDatFile(Urinals urinal, StringBuilder op) throws IOException {
-        File daFile = new File("urinal.dat");
+        File daFile = new File("src/urinal.dat");
         FileReader fr = new FileReader(daFile);
         if(fr == null) {
             System.err.println("Error in reading dat file");
@@ -60,7 +62,7 @@ public class Urinals {
         }
     }
 
-    private static void processConsoleInput(Urinals urinal, StringBuilder op) {
+    private static void processTerminalInput(Urinals urinal, StringBuilder op) {
         while(true) {
             Scanner sc = new Scanner(System.in);
             String input =sc.nextLine().trim();
@@ -103,7 +105,23 @@ public class Urinals {
 
 
     public static void main(String[] args) { // prints the available urinals count.
-        System.out.println("Not yet implemented");
-
+        Urinals u = new Urinals();
+        System.out.println("Type `Terminal` (case sensitive) for terminal input and `File` (case sensitive) for file input ");
+        Scanner sc = new Scanner(System.in);
+        String str = sc.nextLine();
+        StringBuilder op =  new StringBuilder("");
+        if(str.compareTo("Terminal")==0) {
+            processTerminalInput(u, op);
+        } else if(str.compareTo("File")==0) {
+            try {
+                System.out.println("You chose File input");
+                openAndprocessDatFile(u, op);
+            } catch (Exception e) {
+                e.printStackTrace();
+            }
+        }
+        if(!op.toString().isEmpty()) {
+            System.out.println(u.writeOutput(op.toString(), u.createFile()));
+        }
     }
 }
