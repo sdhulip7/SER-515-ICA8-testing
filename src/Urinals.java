@@ -4,6 +4,7 @@ import java.util.*;
 //Author - Sri Venkata Vivek Dhulipala
 public class Urinals {
 
+    public static int file_no = 0;
     static boolean isValidString(String str) { // checks if the String is valid and returns -1.
         int n = str.length();
         boolean flag=true;
@@ -37,8 +38,72 @@ public class Urinals {
         }
         return cnt;
     }
+    private static void openAndprocessDatFile(Urinals urinal, StringBuilder op) throws IOException {
+        File daFile = new File("urinal.dat");
+        FileReader fr = new FileReader(daFile);
+        if(fr == null) {
+            System.err.println("Error in reading dat file");
+            System.exit(1);
+        }
+        Scanner sc = new Scanner(fr);
+        String input;
+        while(sc.hasNextLine()) {
+            input = sc.nextLine();
+            if(input.compareTo("-1")==0) break;
+            boolean isValidInput = urinal.isValidString(input);
+            if(isValidInput) {
+                int cnt = urinal.urinalsCount(input);
+                op.append(cnt+"\n");
+            } else {
+                op.append("-1"+"\n");
+            }
+        }
+    }
+
+    private static void processConsoleInput(Urinals urinal, StringBuilder op) {
+        while(true) {
+            Scanner sc = new Scanner(System.in);
+            String input =sc.nextLine().trim();
+            if(input.equals("-1"))break;
+            boolean isValidInput = urinal.isValidString(input);
+            if(isValidInput) {
+                int cnt = urinal.urinalsCount(input);
+                op.append(cnt+"\n");
+            } else {
+                op.append("-1"+"\n");
+            }
+        }
+    }
+
+    boolean writeOutput(String op, File f) {
+        try {
+            FileWriter writer = new FileWriter(f);
+            writer.write(op);
+            writer.close();
+            file_no++;
+        } catch (IOException e) {
+            e.printStackTrace();
+            return false;
+        }
+        return true;
+    }
+
+    static File createFile() {
+        String path = "rule"+file_no+".txt";
+        if(file_no == 0) {
+            path = "rule.txt";
+        }
+        File f = new File(path);
+        while(f.exists()) {
+            file_no++;
+            return createFile();
+        }
+        return f;
+    }
+
 
     public static void main(String[] args) { // prints the available urinals count.
         System.out.println("Not yet implemented");
+
     }
 }

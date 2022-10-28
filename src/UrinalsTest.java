@@ -27,4 +27,9 @@ class UrinalsTest {
         System.out.println("====== Sri Venkata Vivek Dhulipala == TEST SIX EXECUTED ======= UrinalsCount");
         Assertions.assertEquals(Urinals.urinalsCount("011"), -1);
     }
+
+    @Test
+    void createFile() {
+        Assertions.assertEquals(Urinals.createFile(),null);
+    }
 }
