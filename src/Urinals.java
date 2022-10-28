@@ -77,7 +77,7 @@ public class Urinals {
         }
     }
 
-    boolean writeOutput(String op, File f) {
+    static boolean writeOutput(String op, File f) {
         try {
             FileWriter writer = new FileWriter(f);
             writer.write(op);
