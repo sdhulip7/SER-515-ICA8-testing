@@ -8,7 +8,7 @@ public class Urinals {
         int n = str.length();
         boolean flag=true;
         for(int i=0;i<n;i++) {
-            if(str.charAt(i) != '0' || str.charAt(i) !='1') {
+            if(str.charAt(i) != '0' && str.charAt(i) !='1') {
                 flag=false;
             }
             if(i!=n-1) {
@@ -21,7 +21,21 @@ public class Urinals {
     }
 
     static int urinalsCount(String str) { // checks the number of available urinals
-        return 0;
+        if(isValidString(str) == false) return -1;
+        int cnt=0, n=str.length();
+        StringBuilder s = new StringBuilder(str);
+        for(int i=0;i<n;i++) {
+            if(s.charAt(i)=='0') {
+                boolean leftZero = (i==0) || (s.charAt(i-1)=='0');
+                boolean rightZero = (i==n-1) || (s.charAt(i+1)=='0');
+
+                if(leftZero && rightZero) {
+                    cnt++;
+                    s.setCharAt(i,'1');
+                }
+            }
+        }
+        return cnt;
     }
 
     public static void main(String[] args) { // prints the available urinals count.
