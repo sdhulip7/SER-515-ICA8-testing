@@ -51,6 +51,7 @@ class UrinalsTest {
         System.out.println("====== Sri Venkata Vivek Dhulipala == TEST ONE EXECUTED ======= openAndProcessDatFile empty Dat file");
         Urinals u = new Urinals();
         StringBuilder sb = new StringBuilder("");
-        Assertions.assertEquals(Urinals.openAndProcessDatFile(u, sb),1);
+        File f = new File("");
+        Assertions.assertEquals(Urinals.openAndProcessDatFile(u, sb, f ),1);
     }
 }

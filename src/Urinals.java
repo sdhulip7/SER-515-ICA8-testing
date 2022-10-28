@@ -40,8 +40,8 @@ public class Urinals {
         }
         return cnt;
     }
-    static int openAndProcessDatFile(Urinals urinal, StringBuilder op) throws IOException {
-        File daFile = new File("src/urinal.dat");
+    static int openAndProcessDatFile(Urinals urinal, StringBuilder op, File daFile) throws IOException {
+        daFile = new File("src/urinal.dat");
         FileReader fr = new FileReader(daFile);
         if(fr == null) {
             System.err.println("Error in reading dat file");
@@ -119,8 +119,9 @@ public class Urinals {
             processTerminalInput(u, op);
         } else if(str.compareTo("File")==0) {
             try {
+                File f = new File("");
                 System.out.println("You chose File input");
-                openAndProcessDatFile(u, op);
+                openAndProcessDatFile(u, op, f);
             } catch (Exception e) {
                 e.printStackTrace();
             }
