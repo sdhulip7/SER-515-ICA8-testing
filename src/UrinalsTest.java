@@ -45,4 +45,12 @@ class UrinalsTest {
         File f = new File("test.txt");
         Assertions.assertEquals(Urinals.writeOutput("test rule.txt", f), true);
     }
+
+    @Test
+    void openAndProcessDatFile() throws IOException {
+        System.out.println("====== Sri Venkata Vivek Dhulipala == TEST ONE EXECUTED ======= openAndProcessDatFile empty Dat file");
+        Urinals u = new Urinals();
+        StringBuilder sb = new StringBuilder("");
+        Assertions.assertEquals(Urinals.openAndProcessDatFile(u, sb),1);
+    }
 }

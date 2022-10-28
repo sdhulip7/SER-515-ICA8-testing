@@ -40,12 +40,13 @@ public class Urinals {
         }
         return cnt;
     }
-    static void openAndProcessDatFile(Urinals urinal, StringBuilder op) throws IOException {
+    static int openAndProcessDatFile(Urinals urinal, StringBuilder op) throws IOException {
         File daFile = new File("src/urinal.dat");
         FileReader fr = new FileReader(daFile);
         if(fr == null) {
             System.err.println("Error in reading dat file");
             System.exit(1);
+            return 0;
         }
         Scanner sc = new Scanner(fr);
         String input;
@@ -60,9 +61,11 @@ public class Urinals {
                 op.append("-1"+"\n");
             }
         }
+        return 1;
+
     }
 
-    private static void processTerminalInput(Urinals urinal, StringBuilder op) {
+    static int processTerminalInput(Urinals urinal, StringBuilder op) {
         while(true) {
             Scanner sc = new Scanner(System.in);
             String input =sc.nextLine().trim();
@@ -73,8 +76,10 @@ public class Urinals {
                 op.append(cnt+"\n");
             } else {
                 op.append("-1"+"\n");
+                return 0;
             }
         }
+        return 1;
     }
 
     static boolean writeOutput(String op, File f) {
