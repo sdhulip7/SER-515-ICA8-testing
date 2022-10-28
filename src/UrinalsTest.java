@@ -2,6 +2,7 @@ import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
 
 import java.io.File;
+import java.io.IOException;
 
 import static org.junit.jupiter.api.Assertions.*;
 
@@ -12,6 +13,8 @@ class UrinalsTest {
     void isValidString() {
         System.out.println("====== Sri Venkata Vivek Dhulipala == TEST ONE EXECUTED ======= IsValidString");
         Assertions.assertEquals(Urinals.isValidString("Hi"),false);
+        System.out.println("====== Sri Venkata Vivek Dhulipala == TEST TWO EXECUTED ======= IsValidString");
+        Assertions.assertEquals(Urinals.isValidString("10101"),true);
     }
 
     @Test
