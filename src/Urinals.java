@@ -20,7 +20,7 @@ public class Urinals {
         return flag;
     }
 
-    int urinalsCount(String str) { // checks the number of available urinals
+    static int urinalsCount(String str) { // checks the number of available urinals
         return 0;
     }
 
